@@ -22,7 +22,6 @@ hdr.pdf: hdr.tex
 	$(texengine) $(LATEXFLAGS) $< | grep -i ".*:[0-9]*:.*\|warning"
 	biber auxiliary/$(basename $(notdir $@))
 	$(texengine) $(LATEXFLAGS) $< | grep -i ".*:[0-9]*:.*\|warning"
-	#$(texengine) $(LATEXFLAGS) $<
 	mv auxiliary/$(basename $(notdir $@)).pdf $(basename $(notdir $@)).pdf
 	notify-send -t 2500 "Makefile latex" "Compiler $< en pdf est fini."
 
@@ -35,8 +34,6 @@ hdr.pdf: hdr.tex
 	$(texengine) $(LATEXFLAGS) $< | grep -i ".*:[0-9]*:.*\|warning"
 	echo "4e run"
 	$(texengine) $(LATEXFLAGS) $< | grep -i ".*:[0-9]*:.*\|warning"
-	#echo "5e run"
-	#$(texengine) $(LATEXFLAGS) $< | grep -i ".*:[0-9]*:.*\|warning"
 	mv auxiliary/$*.pdf $*.pdf
 	notify-send -t 1000 "Makefile latex" "Compiler $< en pdf est fini."
 
@@ -72,17 +69,5 @@ preview:
 	echo -e "awful.tag.viewmore({tags[1][6],awful.tag.selected(1)})" | awesome-client
 	$(PDFREADER) $(SRC).pdf
 
-these_complete:
-	pdflatex $(LATEXFLAGS) $(SRC).tex
-	pdflatex $(LATEXFLAGS) $(SRC).tex
-	#bibtex auxiliary/$(SRC)
-	biber auxiliary/$(SRC)
-	pdflatex $(LATEXFLAGS) $(SRC).tex
-	pdflatex $(LATEXFLAGS) $(SRC).tex
-	mv auxiliary/$(SRC).pdf $(SRC).pdf
-
-#figures:
-#	load_makefile ../Calculs/Makefile 
-#
 figures:
 	make -C $(FIGDIR) figures

@@ -1,0 +1,74 @@
+% <<< Preambule
+\documentclass[a4paper,12pt,twoside,openright]{book}
+\input{preamble/packages.input.tex}
+\input{preamble/newcommands.input.tex}
+\input{preamble/definitions.input.tex}
+\input{preamble/layout.input.tex}
+
+
+\let\chaptertitle=\chapter
+\let\introformatting=\relax
+\let\outroformatting=\relax
+% >>>
+
+\begin{document}
+
+\pagenumbering{roman}
+
+% <<< Début
+\hypertarget{titlepage}{}% set the hypertarget
+\bookmark[dest=titlepage,level=chapter]{Couverture}
+\input{Chapters/titlepage.tex}
+\blankpage
+\subfile{Chapters/mercis.tex}
+\input{Chapters/toc.tex}
+% >>>
+
+\pagenumbering{arabic}
+
+\subfile{Chapters/introduction.tex}
+\adjustmtc % https://texnique.fr/osqa/questions/5022/minitoc-un-chapitre-en-retard
+%\subfile{Chapters/exemple.tex}
+
+% <<< Partie I
+\part{MaPartieUn}
+\subfile{Chapters/part1-intro.tex}
+\subfile{Chapters/part1-contrib1.tex}
+\subfile{Chapters/part1-contrib2.tex}
+\subfile{Chapters/part1-conclusion.tex}
+% >>>
+
+% <<< Partie II
+\part{MaPartieDeux}
+\subfile{Chapters/part2-intro.tex}
+\subfile{Chapters/part2-contrib1.tex}
+\subfile{Chapters/part2-contrib2.tex}
+\subfile{Chapters/part2-conclusion.tex}
+% >>>
+
+% <<< Annexes
+%\setcounter{chapter}{0}%
+%\renewcommand{\thechapter}{\Alph{chapter}}%  Letters as 'counters'
+%\part{\appendixname}
+\cleardoublepage
+\phantomsection
+\backmatter
+\bookmarksetup{startatroot}
+\addcontentsline{toc}{part}{Annexes}
+\appendix
+\appendixpage
+\input{Appendices/bibliography.tex}
+% >>> 
+
+% <<< Résumés
+\input{Appendices/resume-fr.tex}
+%\vskip1.5cm
+%\null\hfill \charactercount{Appendices/resume-fr} signes.
+\input{Appendices/resume-en.tex}
+%\vskip1.5cm
+%\null\hfill \charactercount{Appendices/resume-en} characters.
+\input{Appendices/cv.tex}
+% >>>
+
+\end{document}
+% vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

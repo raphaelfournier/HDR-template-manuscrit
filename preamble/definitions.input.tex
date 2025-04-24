@@ -1,0 +1,250 @@
+\addbibresource{\subfix{Bibliography/mybiblio.bib}}
+\addbibresource{\subfix{Bibliography/hdr.bib}}
+
+\DefineBibliographyStrings{french}{
+	backrefpage={cité page},
+	backrefpages={cité pages}
+}
+\DefineBibliographyStrings{english}{
+	backrefpage={Cited on page},
+	backrefpages={Cited on pages}
+}
+
+\renewcommand*{\bibpagerefpunct}{%
+\finentrypunct\space}
+
+\DeclareFieldFormat{bracketswithperiod}{\mkbibbrackets{#1}}
+
+\renewbibmacro*{pageref}{%
+	\iflistundef{pageref}
+		{}
+		{\printtext[bracketswithperiod]{%
+				\ifnumgreater{\value{pageref}}{1}
+					{\bibstring{backrefpages}\ppspace}
+					{\bibstring{backrefpage}\ppspace}%
+				\printlist[pageref][-\value{listtotal}]{pageref}}%
+		\renewcommand*{\finentrypunct}{}}}
+
+\DeclareCiteCommand{\citeauthornsc}
+{\renewcommand*{\mkbibnamefamily}[1]{####1}  % avoid SmallCaps for the name
+	\boolfalse{citetracker}%
+	\boolfalse{pagetracker}%
+\usebibmacro{prenote}}
+{\ifciteindex
+		{\indexnames{labelname}}
+		{}%
+	\printnames{labelname}}
+	{\multicitedelim}
+	{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\myfootcite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \mkbibbrackets{\usebibmacro{cite}}%
+   \setunit{\addnbspace}
+   \printnames{labelname}%
+   \setunit{\labelnamepunct}
+   \printfield[citetitle]{title}%
+   \newunit
+   \printfield{year}}
+  {\addsemicolon\space}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footfullcitetext}[\mkbibfootnotetext]
+  {\usebibmacro{prenote}}
+  {\usedriver
+     {\DeclareNameAlias{sortname}{default}}
+     {\thefield{entrytype}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% small caps ou pas en français dans la biblio
+%\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily}
+%\renewbibmacro*{finentry}{%
+  %\setunit{\finentrypunct\par}%
+  %\usebibmacro{abstract}%
+%\finentry}
+
+\setlist[itemize]{noitemsep, topsep=0pt}
+
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother  
+
+\renewcommand{\nomname}{Liste des Abréviations}
+
+\renewcommand{\algorithmicrequire} {\textbf{\textsc{Entrées:}}}
+\renewcommand{\algorithmicensure}  {\textbf{\textsc{Sorties:}}}
+\renewcommand{\algorithmicwhile}   {\textbf{tantque}}
+\renewcommand{\algorithmicdo}      {\textbf{faire}}
+\renewcommand{\algorithmicendwhile}{\textbf{fin tantque}}
+\renewcommand{\algorithmicend}     {\textbf{fin}}
+\renewcommand{\algorithmicif}      {\textbf{si}}
+\renewcommand{\algorithmicendif}   {\textbf{finsi}}
+\renewcommand{\algorithmicelse}    {\textbf{sinon}}
+\renewcommand{\algorithmicthen}    {\textbf{alors}}
+\renewcommand{\algorithmicfor}     {\textbf{pour}}
+\renewcommand{\algorithmicforall}  {\textbf{pour tout}}
+\renewcommand{\algorithmicdo}      {\textbf{faire}}
+\renewcommand{\algorithmicendfor}  {\textbf{fin pour}}
+\renewcommand{\algorithmicloop}    {\textbf{boucler}}
+\renewcommand{\algorithmicendloop} {\textbf{fin boucle}}
+\renewcommand{\algorithmicrepeat}  {\textbf{répéter}}
+\renewcommand{\algorithmicuntil}   {\textbf{jusqu'à}}
+\floatname{algorithm}{Algorithme}
+
+\newcommand{\figsize}{0.8\columnwidth}
+
+\setcounter{secnumdepth}{3}
+
+% overfull hbox in bibliography
+% https://tex.stackexchange.com/a/172000/227939
+\emergencystretch=1em
+
+% https://tex.stackexchange.com/questions/134191/line-breaks-of-long-urls-in-biblatex-bibliography
+%\setcounter{biburllcpenalty}{7000}
+%\setcounter{biburlucpenalty}{8000}
+%\RequirePackage{luacode}
+  %\luaexec{require("preamble/betterurl")}
+  %\renewcommand{\url}[1]{\luadirect{
+    %betterurl(\luastringN{#1})
+  %}}
+
+%\setcounter{minitocdepth}{2}
+%\mtcindent=15pt
+
+%nicer backref links
+%\renewcommand*{\backref}[1]{}
+%\renewcommand*{\backrefalt}[4]{%
+%\ifcase #1 %
+%(Non cité.)%
+%\or
+%(Cité en page~#2.)%
+%\else
+%(Cité en pages~#2.)%
+%\fi}
+%\renewcommand*{\backrefsep}{, }
+%\renewcommand*{\backreftwosep}{ et~}
+%\renewcommand*{\backreflastsep}{ et~}
+
+\makenomenclature
+
+% Links in pdf
+\definecolor{linkcol}{rgb}{0,0,0.4} 
+\definecolor{linkcol}{HTML}{3366DD}
+\definecolor{linkcol}{HTML}{192639}
+\definecolor{citecol}{rgb}{0.5,0,0} 
+\definecolor{citecol}{HTML}{324b72}
+\definecolor{darkblue}{rgb}{.0,.0,.6}
+\definecolor{darkgreen}{rgb}{.0,.4,.0}
+\definecolor{darkred}{rgb}{.8,.0,.0}
+\definecolor{darkgray}{HTML}{3F3F3F}
+\definecolor{friendlygray}{HTML}{F3F3F3}
+
+% Change this to change the informations included in the pdf file
+
+ \hypersetup
+ {
+ bookmarksopen=true,
+ %bookmarksopenlevel=0,
+ pdftitle=,
+ pdfauthor=Raphaël Fournier-S'niehotta, %auteur du document
+ pdfsubject=HDR, %sujet du document
+ %pdftoolbar=false, %barre d'outils non visible
+ colorlinks=true, %couleurs sur les liens hypertextes
+ %pdfpagemode=None, %aucun mode de page
+ pdfpagelayout=SinglePage, %ouverture en simple page
+ pdffitwindow=true, %pages ouvertes entierement dans toute la fenetre
+ linkcolor=black, % linkcol, %couleur des liens hypertextes internes
+ citecolor=citecol, %couleur des liens pour les citations
+ urlcolor=linkcol %couleur des liens pour les url
+ }
+
+\setminted{fontsize=\small}
+\definecolor{mybg}{rgb}{0.95,0.95,0.95}
+\setminted{bgcolor=mybg}
+\setminted{labelposition=bottomline}
+\usemintedstyle{friendly} % borland, friendly perldoc
+
+
+% definitions.
+% -------------------
+
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{1ex plus 1ex minus 1ex}
+
+%\setlength{\abovedisplayskip}{1pt}
+%\setlength{\belowdisplayskip}{1pt}
+
+%\cftsetindents{subsection}{1em}{3em}
+\setlength{\cftsecindent}{1.2cm}
+%\setlength{\cftsubsecindent}{2cm}
+
+\newenvironment{dedication}
+  {%\clearpage           % we want a new page          %% I commented this
+   \thispagestyle{empty}% no header and footer
+   \vspace*{\stretch{1}}% some space at the top
+   \itshape             % the text is in italics
+   \raggedleft          % flush to the right margin
+  }
+  {\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage           % finish off the page
+  }
+
+%\makeatletter
+%\def\myaddcontentsline#1#2#3{%
+  %\addtocontents{#1}{\protect\contentsline{#2}{#3}{see \thesection\ at p. \thepage}}}
+%\renewcommand{\@todonotes@addElementToListOfTodos}{%
+    %\if@todonotes@colorinlistoftodos%
+        %\myaddcontentsline{tdo}{todo}{{%
+            %\colorbox{\@todonotes@currentbackgroundcolor}%
+                %{\textcolor{\@todonotes@currentbackgroundcolor}{o}}%
+            %\ \@todonotes@caption}}%
+    %\else%
+        %\myaddcontentsline{tdo}{todo}{{\@todonotes@caption}}%
+    %\fi}%
+%\newcommand*\mylistoftodos{%
+  %\begingroup
+       %\setbox\@tempboxa\hbox{see 9.9 at p. 99}%
+       %\renewcommand*\@tocrmarg{\the\wd\@tempboxa}%
+       %\renewcommand*\@pnumwidth{\the\wd\@tempboxa}%
+       %\listoftodos%
+  %\endgroup
+%}
+%\makeatother
+
+%\renewcommand*{\mkbibnamefamily}[1]{\MakeLowercase{#1}{#1}}
+
+\DeclareNameFormat{g-family}{%
+	\usebibmacro{name:family}
+		{\namepartfamily}
+		{\namepartprefix}
+		{\namepartsuffix}%
+	\usebibmacro{name:andothers}}
+
+\newbibmacro{name:newformat}{%
+   {\namepartfamily} % #1->\namepartfamily, #2->\namepartfamilyi
+   %\namepartgiven   % #3->\namepartgiven,  #4->\namepartgiveni
+   %\namepartprefix
+   %\namepartsuffix
+   }
+
+\DeclareNameFormat{newformat}{%
+  \nameparts{#1}% split the name data, will not be necessary in future versions
+  \usebibmacro{name:newformat}%
+  \textit{\usebibmacro{name:andothers}}%
+}
+
+	\DeclareCiteCommand{\citeauthor}
+	{\boolfalse{citetracker}%
+	 \boolfalse{pagetracker}%
+	 \usebibmacro{prenote}}
+	{\ifciteindex
+		 {\indexnames{labelname}}
+		 {}%
+	 \printnames[newformat]{labelname}}
+	{\multicitedelim}
+	{\usebibmacro{postnote}}
+

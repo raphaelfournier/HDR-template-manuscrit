@@ -1,0 +1,208 @@
+%%%% debut macro %%%%
+\def\keepspace{\ifnum\catcode`\ =10
+  \let\next\keepspacebis \else \let\next\relax \fi
+  \next}
+\def \keepspacebis{\obeyspaces
+  \afterassignment\keepspaceaux\let\next= }
+{\obeyspaces%
+\gdef\keepspaceaux{%
+\ifx \next\space\let\next\ignorespaces\fi%
+\catcode`\  =10\relax\next}}
+%%%%
+%%%% fin macro %%%%
+%\newcommand{\noteperso}[1]{\begin{center}
+%\fbox{\begin{minipage}{.8\textwidth}#1\end{minipage}}\end{center}}
+
+\addto\captionsfrench{%
+  %\renewcommand{\lstlistingname}{Requête}%
+}
+\SetupFloatingEnvironment{listing}{name=Requête}
+\captionsetup[listing]{skip=0pt}
+
+\addto\captionsfrench{\renewcommand{\tablename}{Tableau}}
+\addto\captionsfrench{\renewcommand{\figurename}{Figure}}
+%\renewcommand\listfigurename{Liste des figures}
+\newcommand{\fig}[2]{%
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.8\columnwidth]{#1}
+		\caption{#2\label{#1}}
+	\end{figure}
+}
+
+
+
+\newcommand{\gnn}{\emph{GNN}\xspace}
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\supra}{\emph{supra}\xspace}
+\newcommand{\wrt}{\emph{w.r.t.}\xspace}
+\newcommand{\cad}{c'est-à-dire\xspace}
+\newcommand{\via}{\emph{via}\xspace}
+\newcommand{\apriori}{\emph{a priori}\xspace}
+\newcommand{\aposteriori}{\emph{a posteriori}\xspace}
+\newcommand{\cf}{\emph{cf.}\xspace}
+\newcommand{\na}{\mbox{n/a}\xspace}
+\newcommand{\ptop}{P2P\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\edonkey}{{\em eDonkey}\xspace}
+\newcommand{\prev}{{\em précédente}\xspace}
+\newcommand{\suiv}{{\em suivante}\xspace}
+\newcommand{\comnet}{{\em Complex Networks}\xspace}
+%\newcommand{\edonkeydsfr}{{\tt data-ed2k-FR}\xspace}
+%\newcommand{\edonkeydsua}{{\tt data-ed2k-UA}\xspace}
+%\newcommand{\tenweeks}{{\tt data-ed2k2007}\xspace}
+%\newcommand{\ivanlong}{{\tt data-ed2k0912}\xspace}
+%\newcommand{\ivan}{{\tt data-ed2k2009}\xspace}
+%\newcommand{\kadds}{{\tt data-KAD}\xspace}
+\DeclareUrlCommand\printtopic{\urlstyle{tt}}
+\newcommand{\topic}[1]{\protect\printtopic{#1}\index{#1}\xspace}
+\DeclareRobustCommand{\edonkeydsfr}{\topic{data-ed2k-FR}}
+\DeclareRobustCommand{\edonkeydsua}{\topic{data-ed2k-UA}}
+\DeclareRobustCommand{\ivanlong}{\topic{data-ed2k0912}}
+\DeclareRobustCommand{\tenweeks}{\topic{data-ed2k2007}}
+\DeclareRobustCommand{\ivan}{\topic{data-ed2k2009}}
+\DeclareRobustCommand{\kadds}{\topic{data-KAD}}
+\newcommand{\emule}{{eMule}\xspace}
+\newcommand{\amule}{{aMule}\xspace}
+\newcommand{\kad}{{\em KAD}\xspace}
+\newcommand{\etal}{{\em et al.}\xspace}
+\newcommand{\explicit}{{\em explicit}\xspace}
+\newcommand{\sex}{{\em sex}\xspace}
+\newcommand{\child}{{\em child}\xspace}
+\newcommand{\familychild}{{\em familychild}\xspace}
+\newcommand{\familyparents}{{\em familyparents}\xspace}
+\newcommand{\agesuffix}{{\em agesuffix}\xspace}
+\newcommand{\pedo}{pédophile\xspace}
+\newcommand{\cat}[1]{#1\xspace}
+
+\newcommand{\ecite}{{\em \tt \small (citation manquante)}\xspace}
+\newcommand{\citer}[1][MANQUANTE]{\texttt{\textbf{[CITATION #1]}}\xspace}
+\newcommand{\verif}{\texttt{\textbf{VÉRIFIER}\xspace}}
+\newcommand{\tocite}[1]{{\em \tt \small [? #1]}\xspace}
+
+\newrobustcmd*{\citefirstlastauthor}{\AtNextCite{\DeclareNameAlias{labelname}{given-family}}\citeauthor}
+\newcommand{\siecle}[1]{\textsc{#1}\ieme~siècle\xspace}
+
+
+\newcommand{\fixthis}{{\em \bf (FIXTHIS)}\xspace}
+\newcommand{\paedocoeff}{{\em coefficient pédophile}\xspace}
+\newcommand{\paedocoeffs}{{\em coefficients pédophiles}\xspace}
+\newcommand{\paedo}{{\tt paedophile}\xspace}
+\newcommand{\notpaedo}{{\tt not paedophile}\xspace}
+\newcommand{\mixed}{{\tt mixed}\xspace}
+\newcommand{\query}{{\em query}\xspace}
+\newcommand{\gnutella}{{\em Gnutella}\xspace}
+\newcommand{\infocom}{\cite{QuantifyingInfocom}\,}
+\newcommand{\tagged}{T}
+\newcommand{\plus}{^+}
+\newcommand{\moins}{^-}
+\newcommand{\primeplus}{'^{+}}
+\newcommand{\primemoins}{'^{-}}
+\newcommand{\plusplus}{^{++}}
+\newcommand{\moinsmoins}{^{-\,-}}
+
+\newcommand{\paedophiles}{{\em paedophiles}\xspace}
+\newcommand{\quantifying}{{\em quantifying}\xspace}
+\newcommand{\attention}{{\textsc{\bf attention}}\xspace}
+\newcommand{\pedoquery}[1]{{\em \underline{#1}}\xspace}
+
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+#1: & #2 & \longrightarrow & #3 \\
+    & #4 & \longmapsto & #5 \end{array}
+}
+\newcommand{\fonc}[3]{\begin{array}{llcl}
+#1: & #2 & \longmapsto & #3 \end{array}
+}
+
+\newcommand{\mbjurytab}[5]{#1 & #2 \textsc{#3} & #4 & #5}
+
+\usepackage{pgffor, ifthen}
+\newcommand{\notes}[3][\empty]{%
+  \noindent Notes\vspace{10pt}\\
+  \foreach \n in {1,...,#2}{%
+    \ifthenelse{\equal{#1}{\empty}}
+      {\rule{#3}{0.5pt}\\}
+      {\rule{#3}{0.5pt}\vspace{#1}\\}
+    }
+}
+
+\newcommand{\fcite}[1]{\todo[color=green!40]{#1}}
+\newcommand{\conclu}[1]{\todo[color=red!40]{#1}}
+
+\newcommand{\todoa}[1]{\todo[inline]{#1}}
+\newcommand{\todob}[1]{\todo[inline,noinlinepar]{#1}}
+\newcommand{\todoi}[1]{\todo[inline,caption={}]{#1}}
+
+\newcommand{\rem}[1]{\todo[nolist,color=yellow!40]{#1}\xspace}
+\newcommand{\remi}[1]{\smallskip\todo[inline,nolist,color=yellow!40]{#1}\xspace\smallskip}
+\newcommand{\plan}[1]{\smallskip\todo[inline,nolist,color=gray!40]{\textbf{Plan~:} #1}\xspace\smallskip}
+\newcommand{\res}[1]{\todo[nolist,color=blue!40]{#1}\xspace}
+\newcommand{\arelire}{\todo[inline,nolist,color=blue!40]{\`A relire}\xspace}
+\newcommand{\non}[1]{\todo[inline,nolist,color=red!40]{#1}}
+
+%\newcommand{\bof}{\todo[nolist,color=red!40]{Bôf}\xspace}
+\newcommand{\bof}[1]{\underline{#1}{\bf (bof)}\xspace}
+
+\specialcomment{synth}{\begingroup{\bf A synthétiser, traduire  ou retirer~: }\color{gray}}{\endgroup}
+\specialcomment{old}{\begingroup{\bf vieux }\color{gray}}{\endgroup}
+
+\specialcomment{fauxtexte}{\begingroup\ttfamily}{\endgroup}
+\specialcomment{contenu}{\begingroup}{\endgroup}
+
+\specialcomment{encadre}{\bigskip\begingroup\begin{center}\begin{minipage}{.8\textwidth}\begin{mdframed}[roundcorner=10pt,style=encadre]}{\end{mdframed}\end{minipage}\end{center}\endgroup\bigskip}
+
+\specialcomment{noteperso}{\begingroup\begin{center}\begin{minipage}{.8\textwidth}Note perso : }{\end{minipage}\end{center}\endgroup}
+
+%\excludecomment{contribution}
+%\excludecomment{encadre}
+\excludecomment{fauxtexte}
+%\excludecomment{motivation}
+%\excludecomment{old}
+%\excludecomment{plan}
+\excludecomment{remi} % remarque inline
+%\excludecomment{synth}
+
+%\newcommand{\listcontributionname}{Liste des contributions}
+%\newlistof{contributions}{ctb}{\listcontributionname}
+%\newcommand{\contribution}[1]{#1 $\clubsuit$%
+%\refstepcounter{contributions}%
+%\addcontentsline{ctb}{contributions}{#1}}
+
+%\newcommand{\listconclusionname}{Liste des éléments de conclusion}
+%\newlistof{conclusions}{ccl}{\listconclusionname}
+%\newcommand{\conclusion}[1]{#1 $\spadesuit$%
+%\refstepcounter{conclusions}%
+%\addcontentsline{ccl}{conclusions}{#1}}
+
+%\newcommand{\listperspectivename}{Liste des perspectives}
+%\newlistof{perspectives}{psp}{\listperspectivename}
+%\newcommand{\perspective}[1]{#1 $\P$%
+%\refstepcounter{perspectives}%
+%\addcontentsline{psp}{perspectives}{#1}}
+
+\newcommand{\includegraphicsmaybe}[2][]{\IfFileExists{#2}{\includegraphics{#2}}{\fbox{#2 is missing}\\}}
+%\newcommand{\includegraphicsmaybe}[1]{\IfFileExists{#1}{\includegraphics{#1}}{\makebox[0pt]{File #1 is missing}\includegraphics{dessin.pdf}}}
+%\renewcommand{\includegraphics}[2][]{\fbox{#2}}
+%\newcommand{\includegraphicsmaybe}{\includegraphics}
+\renewcommand{\appendixtocname}{Annexes} 
+\renewcommand{\appendixpagename}{Annexes} 
+\newcommand{\blankpage}{
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+}
+
+% https://tex.stackexchange.com/questions/470709/command-for-character-count-including-spaces-in-overleaf
+\newcommand{\charactercount}[1]{
+\immediate\write18{
+  expr `cat #1.tex| tail -n+4 | detex -l | wc -c ` > chars.txt
+}\input{chars.txt}}
+
+\newcommand{\largom}{\textsc{ITEM}\xspace}
+\newcommand{\framework}{\textit{framework}\xspace}
+
+\renewcommand*{\bibfont}{\normalfont\small}
+\DefineBibliographyStrings{french}{phdthesis = {thèse de doctorat}}
